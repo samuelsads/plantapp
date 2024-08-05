@@ -53,8 +53,7 @@ class _LoginPageState extends State<LoginPage> {
             height: 200, width: double.infinity, child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              
+            children: [   
               Text("PLANTAPP", style:TextStyle(fontSize: 24, fontWeight: FontWeight.w600),),
             ],
           ),),

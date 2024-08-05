@@ -1,1 +1,1 @@
-  enum loginStatus  {init, loading, success, error, done}
+  enum LoginStatus  {init, loading, success, error, done,errorUserNotFound,errorWrongPassword}

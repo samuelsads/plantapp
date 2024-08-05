@@ -24,7 +24,7 @@ class _CustomtextFormFieldState extends State<CustomtextFormField> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
                children: [
-                Text(widget.title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),),
+                Text(widget.title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),),
                  TextFormField(
                   controller: widget.controller,
                   obscureText: widget.isPassword??false,
