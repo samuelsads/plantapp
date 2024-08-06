@@ -1,20 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:plant_app/domain/providers/home/home_provider.dart';
-import 'package:plant_app/ui/pages/home/page_view/page_view_page.dart';
+import 'package:plant_app/ui/pages/home/viewmodel_home.dart';
+import 'package:plant_app/ui/pages/plants/plants_page.dart';
+import 'package:plant_app/ui/pages/prices/prices_page.dart';
+import 'package:plant_app/ui/pages/profile/profile_page.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  static const name = 'home-page';
+  final int pageId;
+  const HomePage({required this.pageId, super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
+const routes = <Widget>[PlantsPage(), PricesPage(), ProfilePage()];
+
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageViewPage(),
+      body: IndexedStack(
+        index: widget.pageId,
+        children: routes,
+      ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.green,
         items: const [
@@ -36,7 +46,8 @@ class _HomePageState extends State<HomePage> {
         currentIndex: context.watch<HomeProvider>().currentPage,
         elevation: 0,
         onTap: (value) {
-          context.read<HomeProvider>().chagePage = value;
+          ViewmodelHome().onItemTapped(context, value);
+          context.read<HomeProvider>().currentPage = value;
         },
       ),
     );

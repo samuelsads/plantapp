@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PricesPage extends StatefulWidget {
+  static const name = "prices-page";
   const PricesPage({super.key});
 
   @override

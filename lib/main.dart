@@ -1,8 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:plant_app/configs/app_router.dart';
+import 'package:plant_app/configs/theme.dart';
 import 'package:plant_app/domain/providers/home/home_provider.dart';
-import 'package:plant_app/ui/configs/theme.dart';
-import 'package:plant_app/ui/pages/loading/loading_page.dart';
 import 'package:provider/provider.dart';
 
 import 'firebase_options.dart';
@@ -32,11 +32,11 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: appRouter,
       theme: AppTheme().getTheme(),
       debugShowCheckedModeBanner: false,
       title: 'PlantApp',
-      home: const LoadingPage(),
     );
   }
 }

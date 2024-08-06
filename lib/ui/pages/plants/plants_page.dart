@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PlantsPage extends StatefulWidget {
+  static const name = "plants-page";
   const PlantsPage({super.key});
 
   @override

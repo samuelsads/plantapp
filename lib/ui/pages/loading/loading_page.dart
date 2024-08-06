@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:plant_app/ui/pages/home/home_page.dart';
-import 'package:plant_app/ui/pages/login/login_page.dart';
+import 'package:go_router/go_router.dart';
 
 class LoadingPage extends StatefulWidget {
+  static const name = 'loading-page';
   const LoadingPage({super.key});
 
   @override
@@ -18,11 +18,9 @@ class _LoadingPageState extends State<LoadingPage> {
         if (mounted) {
           FirebaseAuth.instance.authStateChanges().listen((User? user) {
             if (user == null) {
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => const LoginPage()));
+              context.go('/login');
             } else {
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => const HomePage()));
+              context.go('/home/0');
             }
           });
         }
@@ -39,7 +37,6 @@ class _LoadingPageState extends State<LoadingPage> {
           color: Colors.green,
         ),
       ),
-     
     );
   }
 }

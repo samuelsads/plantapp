@@ -8,12 +8,12 @@ class HomeProvider with ChangeNotifier {
 
   PageController get pageController => _pageController;
 
-  set chagePage(int nextPage) {
-    _currentPage = nextPage;
-    _pageController.animateToPage(_currentPage,
-        duration: const Duration(milliseconds: 400), curve: Curves.easeInOut);
-    notifyListeners();
-  }
+  // set chagePage(int nextPage) {
+  //   _currentPage = nextPage;
+  //   _pageController.animateToPage(_currentPage,
+  //       duration: const Duration(milliseconds: 400), curve: Curves.easeInOut);
+  //   notifyListeners();
+  // }
 
   int get currentPage => _currentPage;
 
