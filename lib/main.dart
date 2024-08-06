@@ -1,15 +1,20 @@
-import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:plant_app/domain/providers/home/home_provider.dart';
+import 'package:plant_app/ui/configs/theme.dart';
 import 'package:plant_app/ui/pages/loading/loading_page.dart';
-import 'package:plant_app/ui/pages/login/login_page.dart';
+import 'package:provider/provider.dart';
+
 import 'firebase_options.dart';
 
 void main() async {
-   WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => HomeProvider())],
+      child: const MyApp()));
 }
 
 class MyApp extends StatefulWidget {
@@ -25,13 +30,13 @@ class _MyAppState extends State<MyApp> {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: AppTheme().getTheme(),
       debugShowCheckedModeBanner: false,
-      title: 'Material App',
-      home: LoadingPage(),
+      title: 'PlantApp',
+      home: const LoadingPage(),
     );
   }
 }
