@@ -2,9 +2,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+/// [LoadingPage] is a page that is displayed while the user is logged in.
 class LoadingPage extends StatefulWidget {
-  static const name = 'loading-page';
+  /// [LoadingPage] is a page that is displayed while the user is logged in.
   const LoadingPage({super.key});
+
+  /// [pathName] is the name of the page.
+  static String pathName = 'loading-page';
+
+  /// [name] is the name of the page.
+  static const path = '/';
 
   @override
   State<LoadingPage> createState() => _LoadingPageState();
@@ -30,13 +37,11 @@ class _LoadingPageState extends State<LoadingPage> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: CircularProgressIndicator(
-          color: Colors.green,
+  Widget build(BuildContext context) => const Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(
+            color: Colors.green,
+          ),
         ),
-      ),
-    );
-  }
+      );
 }
