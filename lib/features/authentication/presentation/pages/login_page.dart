@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:plant_app/core/presentation/widgets/custom_buttom.dart';
 import 'package:plant_app/core/presentation/widgets/custom_textformfield.dart';
-import 'package:plant_app/features/login/viewmodel_login.dart';
+import 'package:plant_app/features/authentication/viewmodel_login.dart';
 
 /// [LoginPage] is a page that is displayed when the user is not logged in.
 class LoginPage extends StatefulWidget {
   /// [LoginPage] is a page that is displayed when the user is not logged in.
   const LoginPage({super.key});
 
+  /// [pathName] is the name of the page.
   static const pathName = '/login-page';
 
   /// [path] is the name of the page.
