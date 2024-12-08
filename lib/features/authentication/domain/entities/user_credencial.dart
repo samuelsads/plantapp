@@ -13,6 +13,17 @@ class UserCredencial extends Equatable {
     required this.isAnonymous,
   });
 
+  /// Constructs a new intance of [UserCredential] with empty values
+  const UserCredencial.empty()
+      : this(
+          uid: '',
+          email: '',
+          emailVerified: false,
+          displayName: '',
+          photoURL: '',
+          isAnonymous: false,
+        );
+
   /// [uid] is the unique identifier of the user
   final String uid;
 
