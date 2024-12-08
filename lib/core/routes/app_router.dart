@@ -4,7 +4,7 @@ import 'package:plant_app/features/home/home_page.dart';
 import 'package:plant_app/features/loading/loading_page.dart';
 
 ///
-final appRouter = GoRouter(initialLocation: '/', routes: [
+final appRouter = GoRouter(initialLocation: LoadingPage.path, routes: [
   GoRoute(
     path: LoadingPage.path,
     name: LoadingPage.pathName,

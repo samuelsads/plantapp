@@ -11,7 +11,7 @@ class LoadingPage extends StatefulWidget {
   static String pathName = 'loading-page';
 
   /// [name] is the name of the page.
-  static const path = '/';
+  static const path = '/loading';
 
   @override
   State<LoadingPage> createState() => _LoadingPageState();
@@ -25,7 +25,7 @@ class _LoadingPageState extends State<LoadingPage> {
         if (mounted) {
           FirebaseAuth.instance.authStateChanges().listen((User? user) {
             if (user == null) {
-              context.go('/login');
+              context.go('/login-page');
             } else {
               context.go('/home/0');
             }

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plant_app/core/presentation/widgets/custom_buttom.dart';
 import 'package:plant_app/core/presentation/widgets/custom_textformfield.dart';
-import 'package:plant_app/features/authentication/data/models/request/login_model_request.dart';
-import 'package:plant_app/features/authentication/presentation/blocs/authentication/authentication_bloc.dart';
 
 /// [LoginPage] is a page that is displayed when the user is not logged in.
 class LoginPage extends StatefulWidget {
@@ -11,10 +8,10 @@ class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
   /// [pathName] is the name of the page.
-  static const pathName = '/login-page';
+  static const pathName = 'login-page';
 
   /// [path] is the name of the page.
-  static const path = 'login-page';
+  static const path = '/login-page';
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -82,16 +79,16 @@ class _LoginPageState extends State<LoginPage> {
               placeholder: 'Ingrese su contraseña',
               top: 0,
             ),
-            CumstomButtom(
-                title: 'Ingresar',
-                onPressed: () => context.read<AuthenticationBloc>().add(
-                      LoginWithFirebaseEvent(
-                        request: LoginModelRequest(
-                          email: username.text.trim(),
-                          password: password.text.trim(),
-                        ),
-                      ),
-                    ))
+            CumstomButtom(title: 'Ingresar', onPressed: () {})
+            //=>
+            // context.read<AuthenticationBloc>().add(
+            //       LoginWithFirebaseEvent(
+            //         request: LoginModelRequest(
+            //           email: username.text.trim(),
+            //           password: password.text.trim(),
+            //         ),
+            //       ),
+            //     ))
             // onPressed: () => ViewmodelLogin()
             //     .signIn(username.text.trim(), password.text.trim()))
           ],
