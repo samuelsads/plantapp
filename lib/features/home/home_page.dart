@@ -12,7 +12,11 @@ class HomePage extends StatefulWidget {
   const HomePage({required this.pageId, super.key});
 
   /// [name] is the name of the page.
-  static const name = 'home-page';
+  static const path = '/home-page/:page';
+
+  /// [pathName] is the name of the page.
+  static const pathName = 'home-page';
+
   final int pageId;
 
   @override
@@ -45,7 +49,6 @@ class _HomePageState extends State<HomePage> {
           unselectedItemColor: Colors.white,
           selectedIconTheme: const IconThemeData(color: Colors.black),
           unselectedIconTheme: const IconThemeData(color: Colors.white),
-          currentIndex: context.watch<HomeProvider>().currentPage,
           elevation: 0,
           onTap: (value) {
             ViewmodelHome().onItemTapped(context, value);

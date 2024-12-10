@@ -8,4 +8,7 @@ abstract class AuthRepository {
   /// Sign In
   Future<Either<Failure, UserCredencial>> login(
       {required LoginModelRequest request});
+
+  /// Verify Auth State
+  Future<Either<Failure, bool>> verifyAuthState();
 }

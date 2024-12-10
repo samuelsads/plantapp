@@ -1,11 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plant_app/core/configs/get_it/service_locator.dart';
 import 'package:plant_app/core/configs/theme/theme.dart';
 import 'package:plant_app/core/routes/app_router.dart';
-import 'package:plant_app/domain/providers/home/home_provider.dart';
+import 'package:plant_app/features/authentication/presentation/blocs/authentication/authentication_bloc.dart';
 import 'package:plant_app/firebase_options.dart';
-import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,9 +14,7 @@ void main() async {
   );
 
   setUpServiceLocator();
-  runApp(MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => HomeProvider())],
-      child: const MyApp()));
+  runApp(const MyApp());
 }
 
 /// This is the main application widget.
@@ -35,10 +33,14 @@ class _MyAppState extends State<MyApp> {
   }
 
   @override
-  Widget build(BuildContext context) => MaterialApp.router(
-        routerConfig: appRouter,
-        theme: AppTheme().getTheme(),
-        debugShowCheckedModeBanner: false,
-        title: 'PlantApp',
+  Widget build(BuildContext context) => BlocProvider.value(
+        value: serviceLocator<AuthenticationBloc>()
+          ..add(const VerifyAuthStateEvent()),
+        child: MaterialApp.router(
+          routerConfig: appRouter,
+          theme: AppTheme().getTheme(),
+          debugShowCheckedModeBanner: false,
+          title: 'PlantApp',
+        ),
       );
 }

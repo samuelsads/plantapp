@@ -6,4 +6,7 @@ import 'package:plant_app/features/authentication/domain/entities/user_credencia
 abstract class AuthApiDataSource {
   /// [login] is a method that returns a [UserCredential]
   Future<UserCredencial> login({required LoginModelRequest request});
+
+  /// [verifyAuthState] is a method that returns a [User]
+  Future<bool> verifyAuthState();
 }

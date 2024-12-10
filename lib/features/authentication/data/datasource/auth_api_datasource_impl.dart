@@ -24,4 +24,14 @@ class AuthApiDatasourceImpl implements AuthApiDataSource {
       rethrow;
     }
   }
+
+  @override
+  Future<bool> verifyAuthState() async {
+    try {
+      final response = await auth.authStateChanges().first;
+      return response != null;
+    } on Exception {
+      rethrow;
+    }
+  }
 }

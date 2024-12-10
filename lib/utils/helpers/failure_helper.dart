@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:plant_app/core/errors/exceptions.dart';
 import 'package:plant_app/core/errors/failures.dart';
 
@@ -13,8 +14,8 @@ Failure mapExceptionToFailure(Exception exception) {
     return const LocalStorageFailure();
   } else if (exception is UnauthorizedException) {
     return UnauthorizedFailure(exception.message);
-  } else if (exception is SpecialQRException) {
-    return const SpecialQRFailure();
+  } else if (exception is FirebaseException) {
+    return FirebaseFailure(exception.message);
   } else {
     return UnknownFailure(exception);
   }
@@ -34,9 +35,8 @@ String mapFailureToMessage(Failure failure) {
           'Failure from Google Auth flow';
     case const (LocalStorageFailure):
       return 'Error obtaining value from local storage';
-    case const (SpecialQRFailure):
-      return (failure as SpecialQRFailure).message ??
-          'Should redirect to scan view.';
+    case const (FirebaseException):
+      return (failure as FirebaseException).message ?? 'Error  from Firebase';
     case const (UnauthorizedFailure):
       return (failure as UnauthorizedFailure).message ?? 'Unauthorized';
     default:

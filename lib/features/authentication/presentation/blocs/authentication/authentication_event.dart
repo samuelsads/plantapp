@@ -18,3 +18,12 @@ class LoginWithFirebaseEvent extends AuthenticationEvent {
   @override
   List<Object?> get props => [request];
 }
+
+///Event for verify authentication state
+class VerifyAuthStateEvent extends AuthenticationEvent {
+  ///Constructor for VerifyAuthStateEvent
+  const VerifyAuthStateEvent();
+
+  @override
+  List<Object?> get props => [];
+}

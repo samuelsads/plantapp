@@ -68,7 +68,6 @@ class AppleAuthFailure extends Failure {
   List<Object?> get props => [message];
 }
 
-
 /// Represents a failure from local storage.
 class LocalStorageFailure extends Failure {
   /// Constructs a [LocalStorageFailure].
@@ -82,6 +81,18 @@ class LocalStorageFailure extends Failure {
 class UnauthorizedFailure extends Failure {
   /// Constructs a [UnauthorizedFailure] with an optional [message].
   const UnauthorizedFailure([this.message]);
+
+  /// The error message associated with the unauthorized request.
+  final String? message;
+
+  @override
+  List<Object?> get props => [message];
+}
+
+/// Represents a failure from firebase.
+class FirebaseFailure extends Failure {
+  /// Constructs a [FirebaseFailure] with an optional [message].
+  const FirebaseFailure([this.message]);
 
   /// The error message associated with the unauthorized request.
   final String? message;

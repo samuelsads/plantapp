@@ -24,4 +24,14 @@ class AuthRepositoryImpl implements AuthRepository {
       return Left(mapExceptionToFailure(e));
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> verifyAuthState() async {
+    try {
+      final response = await dataSource.verifyAuthState();
+      return Right(response);
+    } on Exception catch (e) {
+      return Left(mapExceptionToFailure(e));
+    }
+  }
 }
