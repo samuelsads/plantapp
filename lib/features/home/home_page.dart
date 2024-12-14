@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:plant_app/domain/providers/home/home_provider.dart';
-import 'package:plant_app/features/home/viewmodel_home.dart';
 import 'package:plant_app/features/plants/plants_page.dart';
 import 'package:plant_app/features/prices/prices_page.dart';
 import 'package:plant_app/features/profile/profile_page.dart';
-import 'package:provider/provider.dart';
 
 /// [HomePage]   is a page that is displayed
 class HomePage extends StatefulWidget {
@@ -17,6 +14,7 @@ class HomePage extends StatefulWidget {
   /// [pathName] is the name of the page.
   static const pathName = 'home-page';
 
+  ///[page id] represent the position page
   final int pageId;
 
   @override
@@ -51,8 +49,8 @@ class _HomePageState extends State<HomePage> {
           unselectedIconTheme: const IconThemeData(color: Colors.white),
           elevation: 0,
           onTap: (value) {
-            ViewmodelHome().onItemTapped(context, value);
-            context.read<HomeProvider>().currentPage = value;
+            //ViewmodelHome().onItemTapped(context, value);
+            //context.read<HomeProvider>().currentPage = value;
           },
         ),
       );

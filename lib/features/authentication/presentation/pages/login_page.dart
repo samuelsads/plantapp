@@ -63,28 +63,47 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
               ),
-              CustomTextFormField(
-                label: 'Username',
-                marginLeft: 24,
-                marginRight: 24,
-                onChanged: (email) =>
-                    context.read<LoginCubit>().onEmailChanged(email),
-              ),
-              CustomTextFormField(
-                label: 'Password',
-                marginLeft: 24,
-                marginRight: 24,
-                onChanged: (password) =>
-                    context.read<LoginCubit>().onPasswordChanged(password),
-              ),
-              CustomButtom(
-                  marginTop: 24,
-                  marginLeft: 24,
-                  marginRight: 24,
-                  title: 'Ingresar',
-                  onPressed: () {})
+              _formInputs(context),
+              _formButtoms()
             ],
           ),
+        ),
+      );
+
+  CustomButtom _formButtoms() => CustomButtom(
+      marginTop: 24,
+      marginLeft: 24,
+      marginRight: 24,
+      title: 'Ingresar',
+      onPressed: () {});
+
+  Widget _formInputs(BuildContext context) =>
+      BlocBuilder<LoginCubit, LoginCubitState>(
+        builder: (context, cubitState) => Column(
+          children: [
+            CustomTextFormField(
+              label: 'Username',
+              marginLeft: 24,
+              marginRight: 24,
+              onChanged: (email) =>
+                  context.read<LoginCubit>().onEmailChanged(email),
+            ),
+            CustomTextFormField(
+              label: 'Password',
+              marginLeft: 24,
+              marginRight: 24,
+              obscureText: cubitState.hidePassword,
+              suffixIcon: IconButton(
+                  onPressed: () {
+                    context.read<LoginCubit>().toggleHidePassword();
+                  },
+                  icon: cubitState.hidePassword
+                      ? const Icon(Icons.visibility_off)
+                      : const Icon(Icons.visibility)),
+              onChanged: (password) =>
+                  context.read<LoginCubit>().onPasswordChanged(password),
+            ),
+          ],
         ),
       );
 }
