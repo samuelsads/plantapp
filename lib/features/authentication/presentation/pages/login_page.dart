@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plant_app/core/configs/get_it/service_locator.dart';
+import 'package:plant_app/core/presentation/widgets/inputs/custom_buttom.dart';
 import 'package:plant_app/core/presentation/widgets/inputs/custom_text_form_field.dart';
 import 'package:plant_app/features/authentication/presentation/cubits/login/login_cubit.dart';
 
@@ -76,11 +77,12 @@ class _LoginPageState extends State<LoginPage> {
                 onChanged: (password) =>
                     context.read<LoginCubit>().onPasswordChanged(password),
               ),
-              Container(
-                  margin: const EdgeInsets.only(left: 24, right: 24, top: 12),
-                  width: double.infinity,
-                  child: ElevatedButton(
-                      onPressed: () {}, child: const Text('Ingresar')))
+              CustomButtom(
+                  marginTop: 24,
+                  marginLeft: 24,
+                  marginRight: 24,
+                  title: 'Ingresar',
+                  onPressed: () {})
             ],
           ),
         ),
