@@ -2,8 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plant_app/core/configs/get_it/service_locator.dart';
-import 'package:plant_app/core/configs/theme/theme.dart';
 import 'package:plant_app/core/routes/app_router.dart';
+import 'package:plant_app/core/theme/light_theme.dart';
 import 'package:plant_app/features/authentication/presentation/blocs/authentication/authentication_bloc.dart';
 import 'package:plant_app/firebase_options.dart';
 
@@ -38,7 +38,7 @@ class _MyAppState extends State<MyApp> {
           ..add(const VerifyAuthStateEvent()),
         child: MaterialApp.router(
           routerConfig: appRouter,
-          theme: AppTheme().getTheme(),
+          theme: LightTheme().theme(),
           debugShowCheckedModeBanner: false,
           title: 'PlantApp',
         ),
