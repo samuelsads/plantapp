@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plant_app/core/configs/get_it/service_locator.dart';
 import 'package:plant_app/core/presentation/widgets/inputs/custom_buttom.dart';
 import 'package:plant_app/core/presentation/widgets/inputs/custom_text_form_field.dart';
+import 'package:plant_app/features/authentication/presentation/blocs/authentication/authentication_bloc.dart';
 import 'package:plant_app/features/authentication/presentation/cubits/login/login_cubit.dart';
 
 /// [LoginPage] is a page that is displayed when the user is not logged in.
@@ -70,12 +71,14 @@ class _LoginPageState extends State<LoginPage> {
         ),
       );
 
-  CustomButtom _formButtoms() => CustomButtom(
-      marginTop: 24,
-      marginLeft: 24,
-      marginRight: 24,
-      title: 'Ingresar',
-      onPressed: () {});
+  Widget _formButtoms() => BlocBuilder<AuthenticationBloc, AuthenticationState>(
+        builder: (context, state) => CustomButtom(
+            marginTop: 24,
+            marginLeft: 24,
+            marginRight: 24,
+            title: 'Ingresar',
+            onPressed: () {}),
+      );
 
   Widget _formInputs(BuildContext context) =>
       BlocBuilder<LoginCubit, LoginCubitState>(
