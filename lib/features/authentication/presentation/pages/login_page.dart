@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:plant_app/core/presentation/widgets/custom_buttom.dart';
-import 'package:plant_app/core/presentation/widgets/custom_textformfield.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:plant_app/core/configs/get_it/service_locator.dart';
+import 'package:plant_app/core/presentation/widgets/inputs/custom_text_form_field.dart';
+import 'package:plant_app/features/authentication/presentation/cubits/login/login_cubit.dart';
 
 /// [LoginPage] is a page that is displayed when the user is not logged in.
 class LoginPage extends StatefulWidget {
@@ -25,19 +27,6 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     username = TextEditingController();
     password = TextEditingController();
-    // WidgetsBinding.instance.addPostFrameCallback(
-    //   (timeStamp) {
-    //     if (mounted) {
-    // FirebaseAuth.instance.authStateChanges().listen((User? user) {
-    //   if (user == null) {
-    //     print('User is currently signed out!');
-    //   } else {
-    //     print('User is signed in!');
-    //   }
-    // });
-    //   }
-    // },
-    //);
     super.initState();
   }
 
@@ -51,47 +40,49 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
         backgroundColor: Colors.white,
-        body: Column(
-          children: [
-            const SizedBox(
-              height: 200,
-              width: double.infinity,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    'PLANTAPP',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
-                  ),
-                ],
+        body: BlocProvider.value(
+          value: serviceLocator<LoginCubit>(),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 200,
+                width: double.infinity,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(
+                          left: 24, right: 24, bottom: 24),
+                      child: const Text(
+                        'PLANTAPP',
+                        style: TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            CustomtextFormField(
-              title: 'Correo electrónico',
-              controller: username,
-              placeholder: 'example@example.com',
-            ),
-            CustomtextFormField(
-              title: 'Contraseña',
-              controller: password,
-              isPassword: true,
-              placeholder: 'Ingrese su contraseña',
-              top: 0,
-            ),
-            CumstomButtom(title: 'Ingresar', onPressed: () {})
-            //=>
-            // context.read<AuthenticationBloc>().add(
-            //       LoginWithFirebaseEvent(
-            //         request: LoginModelRequest(
-            //           email: username.text.trim(),
-            //           password: password.text.trim(),
-            //         ),
-            //       ),
-            //     ))
-            // onPressed: () => ViewmodelLogin()
-            //     .signIn(username.text.trim(), password.text.trim()))
-          ],
+              CustomTextFormField(
+                label: 'Username',
+                marginLeft: 24,
+                marginRight: 24,
+                onChanged: (email) =>
+                    context.read<LoginCubit>().onEmailChanged(email),
+              ),
+              CustomTextFormField(
+                label: 'Password',
+                marginLeft: 24,
+                marginRight: 24,
+                onChanged: (password) =>
+                    context.read<LoginCubit>().onPasswordChanged(password),
+              ),
+              Container(
+                  margin: const EdgeInsets.only(left: 24, right: 24, top: 12),
+                  width: double.infinity,
+                  child: ElevatedButton(
+                      onPressed: () {}, child: const Text('Ingresar')))
+            ],
+          ),
         ),
       );
 }

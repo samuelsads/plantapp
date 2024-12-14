@@ -10,6 +10,7 @@ import 'package:plant_app/features/authentication/domain/repositories/auth_repos
 import 'package:plant_app/features/authentication/domain/usecases/login_with_firebase.dart';
 import 'package:plant_app/features/authentication/domain/usecases/verify_authentication_firebase.dart';
 import 'package:plant_app/features/authentication/presentation/blocs/authentication/authentication_bloc.dart';
+import 'package:plant_app/features/authentication/presentation/cubits/login/login_cubit.dart';
 import 'package:plant_app/utils/helpers/auth_helper.dart';
 import 'package:plant_app/utils/helpers/http_client_helper.dart';
 
@@ -59,5 +60,10 @@ void setUpServiceLocator() {
     () => AuthenticationBloc(
         loginWithFirebase: serviceLocator<LoginWithFirebase>(),
         verifyAuthState: serviceLocator<VerifyAuthenticationFirebase>()),
+  );
+
+  //CUBIT
+  serviceLocator.registerFactory(
+    LoginCubit.new,
   );
 }
