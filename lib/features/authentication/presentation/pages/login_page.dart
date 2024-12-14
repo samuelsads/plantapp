@@ -77,7 +77,9 @@ class _LoginPageState extends State<LoginPage> {
             marginLeft: 24,
             marginRight: 24,
             title: 'Ingresar',
-            onPressed: () {}),
+            onPressed: () {
+              final authenticated = context.read<AuthenticationBloc>();
+            }),
       );
 
   Widget _formInputs(BuildContext context) =>
