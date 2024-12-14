@@ -5,6 +5,7 @@ import 'package:plant_app/core/presentation/widgets/inputs/custom_buttom.dart';
 import 'package:plant_app/core/presentation/widgets/inputs/custom_text_form_field.dart';
 import 'package:plant_app/features/authentication/presentation/blocs/authentication/authentication_bloc.dart';
 import 'package:plant_app/features/authentication/presentation/cubits/login/login_cubit.dart';
+import 'package:plant_app/utils/extensions/build_context_extension.dart';
 
 /// [LoginPage] is a page that is displayed when the user is not logged in.
 class LoginPage extends StatefulWidget {
@@ -76,7 +77,7 @@ class _LoginPageState extends State<LoginPage> {
             marginTop: 24,
             marginLeft: 24,
             marginRight: 24,
-            title: 'Ingresar',
+            title: context.localizations.login,
             onPressed: () {
               final authenticated = context.read<AuthenticationBloc>();
             }),
@@ -87,16 +88,17 @@ class _LoginPageState extends State<LoginPage> {
         builder: (context, cubitState) => Column(
           children: [
             CustomTextFormField(
-              label: 'Username',
+              label: context.localizations.email,
               marginLeft: 24,
               marginRight: 24,
               onChanged: (email) =>
                   context.read<LoginCubit>().onEmailChanged(email),
             ),
             CustomTextFormField(
-              label: 'Password',
+              label: context.localizations.password,
               marginLeft: 24,
               marginRight: 24,
+              marginTop: 12,
               obscureText: cubitState.hidePassword,
               suffixIcon: IconButton(
                   onPressed: () {
