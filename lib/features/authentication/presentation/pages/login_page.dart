@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:plant_app/core/configs/get_it/service_locator.dart';
 import 'package:plant_app/core/presentation/widgets/inputs/custom_buttom.dart';
 import 'package:plant_app/core/presentation/widgets/inputs/custom_text_form_field.dart';
+import 'package:plant_app/features/authentication/data/models/request/login_model_request.dart';
 import 'package:plant_app/features/authentication/presentation/blocs/authentication/authentication_bloc.dart';
 import 'package:plant_app/features/authentication/presentation/cubits/login/login_cubit.dart';
+import 'package:plant_app/features/home/home_page.dart';
+import 'package:plant_app/utils/enums/request_progress_status.dart';
 import 'package:plant_app/utils/extensions/build_context_extension.dart';
 
 /// [LoginPage] is a page that is displayed when the user is not logged in.
@@ -45,42 +49,82 @@ class _LoginPageState extends State<LoginPage> {
         backgroundColor: Colors.white,
         body: BlocProvider.value(
           value: serviceLocator<LoginCubit>(),
-          child: Column(
-            children: [
-              SizedBox(
-                height: 200,
-                width: double.infinity,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.only(
-                          left: 24, right: 24, bottom: 24),
-                      child: const Text(
-                        'PLANTAPP',
-                        style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.w600),
+          child: BlocListener<AuthenticationBloc, AuthenticationState>(
+            listener: (context, state) {
+              if (state.authProgressStatus.isError) {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text(
+                    state.verifyErrorMessage,
+                  ),
+                  backgroundColor: Colors.red,
+                ));
+              }
+
+              if (state.authProgressStatus.isSuccess) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Login is success'),
+                    backgroundColor: Colors.green,
+                  ),
+                );
+                context
+                    .goNamed(HomePage.pathName, pathParameters: {'page': '0'});
+              }
+            },
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 200,
+                  width: double.infinity,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(
+                            left: 24, right: 24, bottom: 24),
+                        child: const Text(
+                          'PLANTAPP',
+                          style: TextStyle(
+                              fontSize: 24, fontWeight: FontWeight.w600),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              _formInputs(context),
-              _formButtoms()
-            ],
+                _formInputs(context),
+                _formButtoms()
+              ],
+            ),
           ),
         ),
       );
 
   Widget _formButtoms() => BlocBuilder<AuthenticationBloc, AuthenticationState>(
-        builder: (context, state) => CustomButtom(
-            marginTop: 24,
-            marginLeft: 24,
-            marginRight: 24,
-            title: context.localizations.login,
-            onPressed: () {
-              final authenticated = context.read<AuthenticationBloc>();
-            }),
+        builder: (context, state) => BlocBuilder<LoginCubit, LoginCubitState>(
+          builder: (context, cubitState) => CustomButtom(
+              marginTop: 24,
+              marginLeft: 24,
+              marginRight: 24,
+              title: (state.authProgressStatus.isLoading)
+                  ? ''
+                  : context.localizations.login,
+              onPressed: (state.authProgressStatus.isLoading)
+                  ? () {}
+                  : () {
+                      final authenticated = context.read<AuthenticationBloc>();
+                      final cubit = context.read<LoginCubit>();
+                      final isValid = cubit.validate(
+                          appLocalizations: context.localizations);
+                      if (isValid) {
+                        final LoginModelRequest request = LoginModelRequest(
+                            email: cubit.state.email,
+                            password: cubit.state.password);
+                        authenticated
+                            .add(LoginWithFirebaseEvent(request: request));
+                        return;
+                      }
+                    }),
+        ),
       );
 
   Widget _formInputs(BuildContext context) =>
@@ -91,11 +135,13 @@ class _LoginPageState extends State<LoginPage> {
               label: context.localizations.email,
               marginLeft: 24,
               marginRight: 24,
+              errorMessage: cubitState.emailError,
               onChanged: (email) =>
                   context.read<LoginCubit>().onEmailChanged(email),
             ),
             CustomTextFormField(
               label: context.localizations.password,
+              errorMessage: cubitState.passwordError,
               marginLeft: 24,
               marginRight: 24,
               marginTop: 12,

@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:plant_app/l10n/app_localizations.dart';
+import 'package:plant_app/utils/helpers/validator_helper.dart';
 
 part 'login_state.dart';
 
@@ -29,5 +31,36 @@ class LoginCubit extends Cubit<LoginCubitState> {
     emit(state.copyWith(
       hidePassword: !state.hidePassword,
     ));
+  }
+
+  /// Method used to validate the login form.
+  bool validate({required AppLocalizations appLocalizations}) {
+    bool isValid = true;
+
+    final validateEmail = validatorHelper(
+        value: state.email,
+        appLocalizations: appLocalizations,
+        required: true,
+        email: true);
+    if (validateEmail != null) {
+      emit(state.copyWith(emailError: validateEmail));
+      isValid = false;
+    } else {
+      emit(state.copyWith(emailError: ''));
+    }
+
+    final validatePassword = validatorHelper(
+        value: state.password,
+        appLocalizations: appLocalizations,
+        required: true,
+        password: true);
+    if (validatePassword != null) {
+      emit(state.copyWith(passwordError: validatePassword));
+      isValid = false;
+    } else {
+      emit(state.copyWith(passwordError: ''));
+    }
+
+    return isValid ? true : false;
   }
 }

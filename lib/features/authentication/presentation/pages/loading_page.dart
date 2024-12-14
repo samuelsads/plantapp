@@ -24,19 +24,6 @@ class LoadingPage extends StatefulWidget {
 class _LoadingPageState extends State<LoadingPage> {
   @override
   void initState() {
-    // WidgetsBinding.instance.addPostFrameCallback(
-    //   (timeStamp) {
-    //     if (mounted) {
-    //       FirebaseAuth.instance.authStateChanges().listen((User? user) {
-    //         if (user == null) {
-    //           context.go('/login-page');
-    //         } else {
-    //           context.go('/home/0');
-    //         }
-    //       });
-    //     }
-    //   },
-    // );
     super.initState();
   }
 
@@ -44,10 +31,11 @@ class _LoadingPageState extends State<LoadingPage> {
   Widget build(BuildContext context) => Scaffold(
         body: BlocListener<AuthenticationBloc, AuthenticationState>(
           listener: (context, state) {
-            if (state.verifyAuthState.isLoading) {
+            if (state.verifyAuthState.isError) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(state.verifyErrorMessage),
+                  backgroundColor: Colors.red,
                 ),
               );
             } else if (state.verifyAuthState.isSuccess) {

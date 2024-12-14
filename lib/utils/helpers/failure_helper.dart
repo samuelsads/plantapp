@@ -35,8 +35,8 @@ String mapFailureToMessage(Failure failure) {
           'Failure from Google Auth flow';
     case const (LocalStorageFailure):
       return 'Error obtaining value from local storage';
-    case const (FirebaseException):
-      return (failure as FirebaseException).message ?? 'Error  from Firebase';
+    case const (FirebaseFailure):
+      return (failure as FirebaseFailure).message ?? 'Error  from Firebase';
     case const (UnauthorizedFailure):
       return (failure as UnauthorizedFailure).message ?? 'Unauthorized';
     default:

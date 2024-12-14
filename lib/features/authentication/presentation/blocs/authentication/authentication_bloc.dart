@@ -32,7 +32,7 @@ class AuthenticationBloc
 
   Future<void> _onVerifyAuthState(
       VerifyAuthStateEvent event, Emitter<AuthenticationState> emit) async {
-    emit(state.copyWith(authProgressStatus: RequestProgressStatus.loading));
+    emit(state.copyWith(verifyAuthState: RequestProgressStatus.loading));
     final response = await _verifyAuthState(NoParams());
     response.fold(
       (failure) => emit(state.copyWith(
@@ -52,8 +52,9 @@ class AuthenticationBloc
     final response = await _loginWithFirebase(
         login_with_firebase.Params(request: event.request));
     response.fold(
-      (failure) =>
-          emit(state.copyWith(authProgressStatus: RequestProgressStatus.error)),
+      (failure) => emit(state.copyWith(
+          authProgressStatus: RequestProgressStatus.error,
+          verifyErrorMessage: mapFailureToMessage(failure))),
       (userCredential) => emit(
           state.copyWith(authProgressStatus: RequestProgressStatus.success)),
     );
