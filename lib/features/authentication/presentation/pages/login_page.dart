@@ -27,20 +27,13 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  late TextEditingController username;
-  late TextEditingController password;
-
   @override
   void initState() {
-    username = TextEditingController();
-    password = TextEditingController();
     super.initState();
   }
 
   @override
   void dispose() {
-    username.dispose();
-    password.dispose();
     super.dispose();
   }
 
