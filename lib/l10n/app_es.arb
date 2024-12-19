@@ -12,5 +12,8 @@
     "errorPasswordLowercase": "Al menos una minuscula",
     "errorPasswordDigit": "Al menos un número",
     "errorPasswordSpecialCharacter": "Al menos un caracter especial",
-    "errorPasswordLength": "Al menos 8 caracteres"
+    "errorPasswordLength": "Al menos 8 caracteres",
+    "image": "Imagen",
+    "fromGallery": "De la galeria",
+    "fromFiles": "De un archivo"
 }

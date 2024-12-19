@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
+/// [PlantsPage] is the page that displays the plants.
 class PlantsPage extends StatefulWidget {
+  /// [PlantsPage] is the page that displays the plants.
   const PlantsPage({super.key});
+
+  /// [name] is the name of the page.
   static const name = 'plants-page';
 
   @override

@@ -183,12 +183,10 @@ class HttpClientHelperImpl implements HttpClientHelper {
   QueuedInterceptorsWrapper _dioInterceptor() => QueuedInterceptorsWrapper(
         onRequest: ((options, handler) async => handler.next(options)),
         onResponse: (response, handler) => handler.next(response),
-        onError: (error, handler) async {
-          //Log the error data
-          return handler.next(error);
-        },
+        onError: (error, handler) async => handler.next(error),
       );
 
+  // ignore: unused_element
   String _formDataToString(FormData formData) {
     final StringBuffer buffer = StringBuffer();
     for (var element in formData.fields) {

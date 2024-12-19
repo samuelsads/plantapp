@@ -46,7 +46,6 @@ class _MyAppState extends State<MyApp> {
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: const [
-            Locale('en'),
             Locale('es'),
           ],
           routerConfig: appRouter,
