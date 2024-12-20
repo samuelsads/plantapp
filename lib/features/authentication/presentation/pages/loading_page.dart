@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:plant_app/features/authentication/presentation/blocs/authentication/authentication_bloc.dart';
 import 'package:plant_app/features/authentication/presentation/pages/login_page.dart';
-import 'package:plant_app/features/home/home_page.dart';
+import 'package:plant_app/features/home/presentation/pages/home_page.dart';
 import 'package:plant_app/utils/enums/request_progress_status.dart';
 
 /// [LoadingPage] is a page that is displayed while the user is logged in.

@@ -7,7 +7,7 @@ import 'package:plant_app/core/presentation/widgets/inputs/custom_text_form_fiel
 import 'package:plant_app/features/authentication/data/models/request/login_model_request.dart';
 import 'package:plant_app/features/authentication/presentation/blocs/authentication/authentication_bloc.dart';
 import 'package:plant_app/features/authentication/presentation/cubits/login/login_cubit.dart';
-import 'package:plant_app/features/home/home_page.dart';
+import 'package:plant_app/features/home/presentation/pages/home_page.dart';
 import 'package:plant_app/utils/enums/request_progress_status.dart';
 import 'package:plant_app/utils/extensions/build_context_extension.dart';
 

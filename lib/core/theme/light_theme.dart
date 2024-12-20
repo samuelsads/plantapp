@@ -8,7 +8,7 @@ class LightTheme {
   /// Method used to get the light theme
   ThemeData theme() => ThemeData(
         progressIndicatorTheme: ProgressIndicatorThemeData(
-          color: _colorExtension.green,
+          color: _colorExtension.white,
         ),
         scaffoldBackgroundColor: _colorExtension.beige,
         appBarTheme: AppBarTheme(

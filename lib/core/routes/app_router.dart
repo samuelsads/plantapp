@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:plant_app/features/authentication/presentation/pages/loading_page.dart';
 import 'package:plant_app/features/authentication/presentation/pages/login_page.dart';
-import 'package:plant_app/features/home/home_page.dart';
+import 'package:plant_app/features/home/presentation/pages/home_page.dart';
 
 ///
 final appRouter = GoRouter(initialLocation: LoadingPage.path, routes: [
