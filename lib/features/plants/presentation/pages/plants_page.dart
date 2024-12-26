@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:plant_app/features/plants/presentation/pages/add_plant_page.dart';
 
 /// [PlantsPage] is the page that displays the plants.
 class PlantsPage extends StatefulWidget {
@@ -14,9 +16,13 @@ class PlantsPage extends StatefulWidget {
 
 class _PlantsPageState extends State<PlantsPage> {
   @override
-  Widget build(BuildContext context) => const Scaffold(
-        body: Center(
+  Widget build(BuildContext context) => Scaffold(
+        body: const Center(
           child: Text('Plants Page'),
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.add),
+          onPressed: () async => await context.pushNamed(AddPlantPage.pathName),
         ),
       );
 }

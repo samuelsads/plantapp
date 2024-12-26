@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:plant_app/core/configs/get_it/service_locator.dart';
 import 'package:plant_app/features/home/presentation/cubits/navigator/navigator_cubit.dart'
     as cubit;
-import 'package:plant_app/features/plants/plants_page.dart';
+import 'package:plant_app/features/plants/presentation/pages/plants_page.dart';
 import 'package:plant_app/features/prices/prices_page.dart';
 import 'package:plant_app/features/profile/profile_page.dart';
 

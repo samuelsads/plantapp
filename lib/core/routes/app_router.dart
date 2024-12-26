@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:plant_app/features/authentication/presentation/pages/loading_page.dart';
 import 'package:plant_app/features/authentication/presentation/pages/login_page.dart';
 import 'package:plant_app/features/home/presentation/pages/home_page.dart';
+import 'package:plant_app/features/plants/presentation/pages/add_plant_page.dart';
 
 ///
 final appRouter = GoRouter(initialLocation: LoadingPage.path, routes: [
@@ -15,6 +16,10 @@ final appRouter = GoRouter(initialLocation: LoadingPage.path, routes: [
     name: LoginPage.pathName,
     builder: (context, state) => const LoginPage(),
   ),
+  GoRoute(
+      path: AddPlantPage.path,
+      name: AddPlantPage.pathName,
+      builder: (context, state) => const AddPlantPage()),
   GoRoute(
     path: HomePage.path,
     name: HomePage.pathName,
