@@ -3,12 +3,12 @@ import 'dart:io';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-part 'plants_state.dart';
+part 'add_plants_state.dart';
 
-/// [PlantsCubit] is the cubit for the plants.
-class PlantsCubit extends Cubit<PlantsState> {
-  /// [PlantsCubit] is the cubit for the plants.
-  PlantsCubit() : super(const PlantsState());
+/// [AddPlantsCubit] is the cubit for the plants.
+class AddPlantsCubit extends Cubit<AddPlantsState> {
+  /// [AddPlantsCubit] is the cubit for the plants.
+  AddPlantsCubit() : super(const AddPlantsState());
 
   /// [setName] is the function that sets the name of the plant.
   void setName(String name) => emit(state.copyWith(name: name));

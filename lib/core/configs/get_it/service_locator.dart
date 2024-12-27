@@ -12,6 +12,7 @@ import 'package:plant_app/features/authentication/domain/usecases/verify_authent
 import 'package:plant_app/features/authentication/presentation/blocs/authentication/authentication_bloc.dart';
 import 'package:plant_app/features/authentication/presentation/cubits/login/login_cubit.dart';
 import 'package:plant_app/features/home/presentation/cubits/navigator/navigator_cubit.dart';
+import 'package:plant_app/features/plants/presentation/cubits/plants/add_plants_cubit.dart';
 import 'package:plant_app/utils/helpers/auth_helper.dart';
 import 'package:plant_app/utils/helpers/http_client_helper.dart';
 
@@ -71,5 +72,10 @@ void setUpServiceLocator() {
   ///MARK: - Home
   serviceLocator.registerFactory(
     NavigatorCubit.new,
+  );
+
+  //MARK: - Add plants
+  serviceLocator.registerFactory(
+    AddPlantsCubit.new,
   );
 }

@@ -1,9 +1,9 @@
-part of 'plants_cubit.dart';
+part of 'add_plants_cubit.dart';
 
-/// [PlantsState] is the state of the plants.
-class PlantsState extends Equatable {
-  /// [PlantsState] is the state of the plants.
-  const PlantsState({
+/// [AddPlantsState] is the state of the plants.
+class AddPlantsState extends Equatable {
+  /// [AddPlantsState] is the state of the plants.
+  const AddPlantsState({
     this.name = '',
     this.description = '',
     this.seller = '',
@@ -27,15 +27,15 @@ class PlantsState extends Equatable {
   /// [image] is the image of the plant.
   final File? image;
 
-  /// [copyWith] is a function that returns a new instance of [PlantsState] with the given parameters.
-  PlantsState copyWith({
+  /// [copyWith] is a function that returns a new instance of [AddPlantsState] with the given parameters.
+  AddPlantsState copyWith({
     String? name,
     String? description,
     String? seller,
     String? price,
     File? image,
   }) =>
-      PlantsState(
+      AddPlantsState(
         name: name ?? this.name,
         description: description ?? this.description,
         seller: seller ?? this.seller,
