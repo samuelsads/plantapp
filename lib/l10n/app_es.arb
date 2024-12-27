@@ -1,0 +1,19 @@
+{
+    "login": "Iniciar sesión",
+    "password": "Contraseña",
+    "email": "Correo electrónico",
+    "errorRequired": "Este campo es requerido",
+    "errorLength": "El minimo de caracteres es",
+    "errorEmail": "Ingrese un correo electrónico válido",
+    "errorPassword": "La contraseña debe tener al menos 8 caracteres incluido al menos un número, una letra mayúscula y una letra minúscula",
+    "errorPasswordsDoNotMatch": "Las contraseñas no coinciden",
+    "repitPassword":  "Repita la contraseña",
+    "errorPasswordUppercase": "Al menos una mayuscula",
+    "errorPasswordLowercase": "Al menos una minuscula",
+    "errorPasswordDigit": "Al menos un número",
+    "errorPasswordSpecialCharacter": "Al menos un caracter especial",
+    "errorPasswordLength": "Al menos 8 caracteres",
+    "image": "Imagen",
+    "fromGallery": "De la galeria",
+    "fromFiles": "De un archivo"
+}

@@ -1,23 +1,27 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:plant_app/configs/app_router.dart';
-import 'package:plant_app/configs/theme.dart';
-import 'package:plant_app/domain/providers/home/home_provider.dart';
-import 'package:provider/provider.dart';
-
-import 'firebase_options.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:plant_app/core/configs/get_it/service_locator.dart';
+import 'package:plant_app/core/routes/app_router.dart';
+import 'package:plant_app/core/theme/light_theme.dart';
+import 'package:plant_app/features/authentication/presentation/blocs/authentication/authentication_bloc.dart';
+import 'package:plant_app/firebase_options.dart';
+import 'package:plant_app/l10n/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => HomeProvider())],
-      child: const MyApp()));
+
+  setUpServiceLocator();
+  runApp(const MyApp());
 }
 
+/// This is the main application widget.
 class MyApp extends StatefulWidget {
+  /// Constructs a [MyApp]
   const MyApp({super.key});
 
   @override
@@ -31,12 +35,23 @@ class _MyAppState extends State<MyApp> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: appRouter,
-      theme: AppTheme().getTheme(),
-      debugShowCheckedModeBanner: false,
-      title: 'PlantApp',
-    );
-  }
+  Widget build(BuildContext context) => BlocProvider.value(
+        value: serviceLocator<AuthenticationBloc>()
+          ..add(const VerifyAuthStateEvent()),
+        child: MaterialApp.router(
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: const [
+            Locale('es'),
+          ],
+          routerConfig: appRouter,
+          theme: LightTheme().theme(),
+          debugShowCheckedModeBanner: false,
+          title: 'PlantApp',
+        ),
+      );
 }

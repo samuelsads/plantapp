@@ -1,0 +1,2 @@
+///Base url
+String baseUrl = '';
