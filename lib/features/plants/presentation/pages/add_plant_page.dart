@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:plant_app/core/presentation/widgets/inputs/custom_buttom.dart';
 import 'package:plant_app/core/presentation/widgets/inputs/custom_text_form_field.dart';
 import 'package:plant_app/core/presentation/widgets/inputs/single_image_input.dart';
+import 'package:plant_app/utils/extensions/build_context_extension.dart';
 
 /// [AddPlantPage] is the page that displays the plants.
 class AddPlantPage extends StatefulWidget {
@@ -23,15 +25,23 @@ class _AddPlantPageState extends State<AddPlantPage> {
       appBar: AppBar(
         title: const Text('Add Plant'),
       ),
-      body: Container(
-        padding: const EdgeInsets.only(top: 24, left: 24, right: 24),
-        child: const Column(
-          children: [
-            CustomTextFormField(label: 'Name'),
-            CustomTextFormField(label: 'Seller'),
-            CustomTextFormField(label: 'Price'),
-            SingleImageInput(label: 'Image'),
-          ],
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.only(top: 24, left: 24, right: 24),
+          child: Column(
+            children: [
+              CustomTextFormField(label: context.localizations.name),
+              CustomTextFormField(label: context.localizations.seller),
+              CustomTextFormField(label: context.localizations.price),
+              SingleImageInput(label: context.localizations.image),
+              CustomTextFormField(
+                marginTop: 12,
+                label: context.localizations.description,
+                maxLines: 4,
+              ),
+              CustomButtom(title: 'Guardar', marginTop: 12, onPressed: () {})
+            ],
+          ),
         ),
       ));
 }

@@ -108,6 +108,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               widget.label,
               style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                     fontWeight: FontWeight.w600,
+                    color: Theme.of(context).colorScheme.darkGray,
                   ),
             ),
             const SizedBox(height: 5),

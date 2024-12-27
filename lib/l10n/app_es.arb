@@ -15,5 +15,13 @@
     "errorPasswordLength": "Al menos 8 caracteres",
     "image": "Imagen",
     "fromGallery": "De la galeria",
-    "fromFiles": "De un archivo"
+    "fromFiles": "De un archivo",
+    "name": "Nombre",
+    "seller": "Vendedor",
+    "price": "Precio",
+    "image": "Imagen",
+    "loginIsSuccess": "Inicio de sesión exitoso",
+    "plantApp": "App de plantas",
+    "selectAnImage": "Seleccione una imagen",
+    "description": "Descripción"
 }

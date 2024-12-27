@@ -55,8 +55,8 @@ class _LoginPageState extends State<LoginPage> {
 
               if (state.authProgressStatus.isSuccess) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Login is success'),
+                  SnackBar(
+                    content: Text(context.localizations.loginIsSuccess),
                     backgroundColor: Colors.green,
                   ),
                 );
@@ -75,9 +75,9 @@ class _LoginPageState extends State<LoginPage> {
                       Container(
                         margin: const EdgeInsets.only(
                             left: 24, right: 24, bottom: 24),
-                        child: const Text(
-                          'PLANTAPP',
-                          style: TextStyle(
+                        child: Text(
+                          context.localizations.plantApp,
+                          style: const TextStyle(
                               fontSize: 24, fontWeight: FontWeight.w600),
                         ),
                       ),
