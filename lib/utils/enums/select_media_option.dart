@@ -5,4 +5,7 @@ enum SelectMediaOption {
 
   /// Select from the files.
   files,
+
+  /// Select from the camera.
+  camera
 }

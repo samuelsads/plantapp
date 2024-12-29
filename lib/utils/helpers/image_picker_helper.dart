@@ -32,6 +32,12 @@ class ImagePickerHelper {
       return await _pickImagesFromFiles(
           maxLimit: maxLimit, onMaxLimitExceed: onMaxLimitExceed);
     }
+    // else if( mediaOption  == SelectMediaOption.camera){
+    //   // Open camera
+    //   return await _pickImageFromCamera(
+    //       maxLimit: maxLimit, onMaxLimitExceed: onMaxLimitExceed);
+
+    // }
     return null;
   }
 

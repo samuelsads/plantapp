@@ -7,9 +7,9 @@ import 'package:plant_app/core/errors/failures.dart';
 import 'package:plant_app/features/plants/domain/repositories/plant_repository.dart';
 
 ///Use case for save image in firebase
-class SaveImageFirebase implements UseCase<String, Params> {
-  ///Constructor for SaveImageFirebase
-  const SaveImageFirebase({required this.repository});
+class SaveImage implements UseCase<String, Params> {
+  ///Constructor for SaveImage
+  const SaveImage({required this.repository});
 
   ///The repository for authentication
   final PlantRepository repository;
@@ -19,7 +19,7 @@ class SaveImageFirebase implements UseCase<String, Params> {
       .uploadPlantImage(image: params.image, plantName: params.plantName);
 }
 
-///Params for SaveImageFirebase usecase
+///Params for SaveImage usecase
 class Params extends Equatable {
   ///Constructor for Params
   const Params({required this.image, required this.plantName});

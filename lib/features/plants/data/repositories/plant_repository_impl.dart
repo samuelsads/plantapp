@@ -17,8 +17,13 @@ class PlantRepositoryImpl implements PlantRepository {
 
   @override
   Future<Either<Failure, void>> savePlant(
-      {required PlantRequest plantRequest}) {
-    throw UnimplementedError();
+      {required PlantRequest plantRequest}) async {
+    try {
+      await dataSource.savePlant(plantRequest: plantRequest);
+      return const Right(null);
+    } on Exception catch (e) {
+      return Left(mapExceptionToFailure(e));
+    }
   }
 
   @override
