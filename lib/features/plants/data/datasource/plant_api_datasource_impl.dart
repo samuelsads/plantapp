@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:plant_app/features/plants/data/datasource/plant_api_datasource.dart';
 import 'package:plant_app/features/plants/data/models/request/plant_request.dart';
+import 'package:plant_app/utils/constants/api_constants.dart';
 
 /// Plant API Data Source Implementation
 class PlantApiDataSourceImpl implements PlantApiDataSource {
@@ -19,6 +20,7 @@ class PlantApiDataSourceImpl implements PlantApiDataSource {
   /// The Firebase Firestore instance
   FirebaseFirestore firestore;
 
+  /// The Firebase Auth instance
   FirebaseAuth auth;
 
   /// Upload Plant Image
@@ -26,10 +28,6 @@ class PlantApiDataSourceImpl implements PlantApiDataSource {
   Future<void> savePlant({required PlantRequest plantRequest}) async {
     try {
       final plant = plantRequest.copyWith(userId: auth.currentUser!.uid);
-      final response = await auth.authStateChanges().first;
-      print('current : ${auth.currentUser!.uid}');
-      print('response : ${response!.uid}');
-      print('plant : ${plant.toJson()}');
       await firestore.collection('plants').add(plant.toJson());
     } on Exception {
       rethrow;
@@ -42,12 +40,7 @@ class PlantApiDataSourceImpl implements PlantApiDataSource {
       {required File image, required String plantName}) async {
     final Dio dio = Dio();
 
-    /// Cloudinary cloud name
-    const String cloudName = 'dhmsr5tox';
-
-    /// Cloudinary upload preset
-    const String uploadPreset = 'plant-app';
-    const String uploadUrl =
+    final String uploadUrl =
         'https://api.cloudinary.com/v1_1/$cloudName/image/upload';
 
     try {
