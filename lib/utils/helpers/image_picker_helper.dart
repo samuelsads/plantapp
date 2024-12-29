@@ -31,13 +31,21 @@ class ImagePickerHelper {
       // Open files
       return await _pickImagesFromFiles(
           maxLimit: maxLimit, onMaxLimitExceed: onMaxLimitExceed);
+    } else if (mediaOption == SelectMediaOption.camera) {
+      //   // Open camera
+      return await _pickImageFromCamera();
     }
-    // else if( mediaOption  == SelectMediaOption.camera){
-    //   // Open camera
-    //   return await _pickImageFromCamera(
-    //       maxLimit: maxLimit, onMaxLimitExceed: onMaxLimitExceed);
+    return null;
+  }
 
-    // }
+  Future<List<File>?> _pickImageFromCamera() async {
+    final imagePicker = ImagePicker();
+    final image = await imagePicker.pickImage(source: ImageSource.camera);
+
+    if (image != null) {
+      final compressedFile = await compressFile(XFile(image.path));
+      return [compressedFile];
+    }
     return null;
   }
 

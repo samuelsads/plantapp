@@ -23,5 +23,6 @@
     "loginIsSuccess": "Inicio de sesión exitoso",
     "plantApp": "App de plantas",
     "selectAnImage": "Seleccione una imagen",
-    "description": "Descripción"
+    "description": "Descripción",
+    "takePhoto": "Tomar foto"
 }
