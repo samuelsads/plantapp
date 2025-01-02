@@ -72,29 +72,30 @@ class _AddPlantPageState extends State<AddPlantPage> {
                       CustomTextFormField(
                         label: context.localizations.name,
                         onChanged: (value) =>
-                            context.read<AddPlantCubit>().onName(value),
+                            context.read<AddPlantCubit>().setName(value),
                       ),
                       CustomTextFormField(
                         label: context.localizations.seller,
                         onChanged: (value) =>
-                            context.read<AddPlantCubit>().onSeller(value),
+                            context.read<AddPlantCubit>().setSeller(value),
                       ),
                       CustomTextFormField(
                         label: context.localizations.price,
-                        onChanged: (value) =>
-                            context.read<AddPlantCubit>().onPrice(value),
+                        onChanged: (value) => context
+                            .read<AddPlantCubit>()
+                            .setPrice(double.parse(value)),
                       ),
                       SingleImageInput(
                         label: context.localizations.image,
                         onImageChanged: (file) =>
-                            context.read<AddPlantCubit>().onImage(file),
+                            context.read<AddPlantCubit>().setImage(file),
                       ),
                       CustomTextFormField(
                         marginTop: 12,
                         label: context.localizations.description,
                         maxLines: 4,
                         onChanged: (value) =>
-                            context.read<AddPlantCubit>().onDescription(value),
+                            context.read<AddPlantCubit>().setDescription(value),
                       ),
                       CustomButtom(
                           title: state.savePlantProgressStatus.isLoading

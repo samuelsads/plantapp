@@ -10,19 +10,19 @@ class AddPlantCubit extends Cubit<AddPlantState> {
   /// [AddPlantCubit] is the cubit for the plants.
   AddPlantCubit() : super(const AddPlantState());
 
-  /// [onName] is the function that sets the name of the plant.
-  void onName(String name) => emit(state.copyWith(name: name));
+  /// [setName] is the function that sets the name of the plant.
+  void setName(String name) => emit(state.copyWith(name: name));
 
-  /// [onDescription] is the function that sets the description of the plant.
-  void onDescription(String description) =>
+  /// [setDescription] is the function that sets the description of the plant.
+  void setDescription(String description) =>
       emit(state.copyWith(description: description));
 
-  /// [onSeller] is the function that sets the seller of the plant.
-  void onSeller(String seller) => emit(state.copyWith(seller: seller));
+  /// [setSeller] is the function that sets the seller of the plant.
+  void setSeller(String seller) => emit(state.copyWith(seller: seller));
 
-  /// [onPrice] is the function that sets the price of the plant.
-  void onPrice(String price) => emit(state.copyWith(price: price));
+  /// [osetPrice] is the function that sets the price of the plant.
+  void setPrice(double price) => emit(state.copyWith(price: price));
 
-  /// [onImage] is the function that sets the image of the plant.
-  void onImage(File? image) => emit(state.copyWith(image: image));
+  /// [osetImage] is the function that sets the image of the plant.
+  void setImage(File? image) => emit(state.copyWith(image: image));
 }

@@ -30,7 +30,7 @@ class PlantRequest {
   final String photoUrl;
 
   /// [price] is the price of the plant
-  final String price;
+  final double price;
 
   ///  [update] is the update request
   final List<UpdateRequest> update;
@@ -49,7 +49,7 @@ class PlantRequest {
     String? name,
     String? sellerName,
     File? photo,
-    String? price,
+    double? price,
     List<UpdateRequest>? update,
     String? description,
     DateTime? arrivalDate,

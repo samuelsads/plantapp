@@ -7,7 +7,7 @@ class AddPlantState extends Equatable {
     this.name = '',
     this.description = '',
     this.seller = '',
-    this.price = '',
+    this.price = 0.00,
     this.image,
   });
 
@@ -22,7 +22,7 @@ class AddPlantState extends Equatable {
   final String seller;
 
   /// [price] is the price of the plant.
-  final String price;
+  final double price;
 
   /// [image] is the image of the plant.
   final File? image;
@@ -32,7 +32,7 @@ class AddPlantState extends Equatable {
     String? name,
     String? description,
     String? seller,
-    String? price,
+    double? price,
     File? image,
   }) =>
       AddPlantState(

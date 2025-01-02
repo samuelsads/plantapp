@@ -52,6 +52,8 @@ void main() async {
   setUpAll(
     () {
       registerFallbackValue(ParamsFake());
+      getIt.registerSingleton<FirebaseAuth>(MockFirebaseAuth());
+      getIt.registerSingleton<FirebaseFirestore>(MockFirebaseFirestore());
     },
   );
 
@@ -68,8 +70,7 @@ void main() async {
 
       plantsBloc =
           PlantsBloc(saveImage: mockSaveImage, savePlant: mockSavePlant);
-      getIt.registerSingleton<FirebaseAuth>(MockFirebaseAuth());
-      getIt.registerSingleton<FirebaseFirestore>(MockFirebaseFirestore());
+
       //setUpServiceLocator();
       when(() => mockFirebaseAuth.currentUser).thenReturn(mockFirebaseUser);
       when(() => mockFirebaseUser.uid).thenReturn('1');
@@ -96,6 +97,12 @@ void main() async {
       blocTest<PlantsBloc, PlantsState>(
         'emits error state when image upload fails',
         setUp: () {
+          when(() => mockFirebaseUser.uid).thenReturn('1');
+          when(() => mockSaveImage(
+                save_image.Params(image: mockFile, plantName: 'plant'),
+              )).thenAnswer(
+            (_) async => const Right('https://example.com/photo.jpg'),
+          );
           when(() => mockSaveImage(
                 save_image.Params(image: mockFile, plantName: 'plant'),
               )).thenAnswer(
@@ -109,7 +116,7 @@ void main() async {
                             photo: mockFile,
                             sellerName: 'sellerName',
                             arrivalDate: DateTime.now(),
-                            price: '1200',
+                            price: 1200,
                             update: [],
                             userId: '1',
                             photoUrl: '')),
@@ -125,7 +132,7 @@ void main() async {
                 photo: mockFile,
                 sellerName: 'sellerName',
                 arrivalDate: DateTime.now(),
-                price: '1200',
+                price: 1200,
                 update: [],
                 userId: '1',
                 photoUrl: ''))),
@@ -162,7 +169,7 @@ void main() async {
                 photo: mockFile,
                 sellerName: 'sellerName',
                 arrivalDate: DateTime(2024),
-                price: '1200',
+                price: 1200,
                 update: [],
                 userId: '1',
                 photoUrl: 'https://example.com/photo.jpg'))),
@@ -196,7 +203,7 @@ void main() async {
                 photo: mockFile,
                 sellerName: 'sellerName',
                 arrivalDate: DateTime(2024),
-                price: '1200',
+                price: 1200,
                 update: [],
                 userId: '1',
                 photoUrl: 'https://example.com/photo.jpg'))),
