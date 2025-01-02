@@ -14,7 +14,8 @@ class SavePlant implements UseCase<void, Params> {
   final PlantRepository repository;
 
   @override
-  Future<Either<Failure, void>> call(Params params) => repository.savePlant(
+  Future<Either<Failure, void>> call(Params params) async =>
+      repository.savePlant(
         plantRequest: params.request,
       );
 }

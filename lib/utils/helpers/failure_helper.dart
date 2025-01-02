@@ -36,7 +36,7 @@ String mapFailureToMessage(Failure failure) {
     case const (LocalStorageFailure):
       return 'Error obtaining value from local storage';
     case const (FirebaseFailure):
-      return (failure as FirebaseFailure).message ?? 'Error  from Firebase';
+      return (failure as FirebaseFailure).message ?? 'Error from Firebase';
     case const (UnauthorizedFailure):
       return (failure as UnauthorizedFailure).message ?? 'Unauthorized';
     default:

@@ -94,7 +94,6 @@ void setUpServiceLocator() {
   //Datasources
   serviceLocator.registerSingleton<PlantApiDataSource>(
     PlantApiDataSourceImpl(
-      storage: serviceLocator<FirebaseStorage>(),
       firestore: serviceLocator<FirebaseFirestore>(),
       auth: serviceLocator<FirebaseAuth>(),
     ),

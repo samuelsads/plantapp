@@ -15,7 +15,7 @@ class SaveImage implements UseCase<String, Params> {
   final PlantRepository repository;
 
   @override
-  Future<Either<Failure, String>> call(Params params) => repository
+  Future<Either<Failure, String>> call(Params params) async => repository
       .uploadPlantImage(image: params.image, plantName: params.plantName);
 }
 

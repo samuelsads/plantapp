@@ -36,11 +36,11 @@ class PlantsBloc extends Bloc<PlantsEvent, PlantsState> {
     if (urlPhoto != '') {
       final request = event.request.copyWith(photoUrl: urlPhoto);
       final response = await _savePlant(save_plant.Params(request: request));
-      response.fold((failure) {
+      response.fold((failure) async {
         emit(state.copyWith(
             savePlantProgressStatus: RequestProgressStatus.error,
             verifyErrorMessage: mapFailureToMessage(failure)));
-      }, (success) {
+      }, (_) async {
         emit(state.copyWith(
             savePlantProgressStatus: RequestProgressStatus.success));
       });

@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:plant_app/features/plants/data/datasource/plant_api_datasource.dart';
 import 'package:plant_app/features/plants/data/models/request/plant_request.dart';
 import 'package:plant_app/utils/constants/api_constants.dart';
@@ -11,11 +10,7 @@ import 'package:plant_app/utils/constants/api_constants.dart';
 /// Plant API Data Source Implementation
 class PlantApiDataSourceImpl implements PlantApiDataSource {
   /// Constructor for PlantApiDataSourceImpl
-  PlantApiDataSourceImpl(
-      {required this.storage, required this.firestore, required this.auth});
-
-  /// The Firebase Storage instance
-  FirebaseStorage storage;
+  PlantApiDataSourceImpl({required this.firestore, required this.auth});
 
   /// The Firebase Firestore instance
   FirebaseFirestore firestore;
@@ -27,7 +22,7 @@ class PlantApiDataSourceImpl implements PlantApiDataSource {
   @override
   Future<void> savePlant({required PlantRequest plantRequest}) async {
     try {
-      final plant = plantRequest.copyWith(userId: auth.currentUser!.uid);
+      final plant = plantRequest.copyWith(userId: auth.currentUser?.uid ?? '0');
       await firestore.collection('plants').add(plant.toJson());
     } on Exception {
       rethrow;
