@@ -31,7 +31,6 @@ class MockFirebaseFirestore extends Mock implements FirebaseFirestore {}
 
 class MockFirebaseAuth extends Mock implements FirebaseAuth {}
 
-// Mock de FirebaseUser
 class MockFirebaseUser extends Mock implements User {}
 
 class ParamsFake extends Fake implements save_plant.Params {}

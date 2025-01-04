@@ -4,18 +4,18 @@ import 'package:flutter_svg/svg.dart';
 /// Custom button widget
 class CustomButtom extends StatelessWidget {
   //// Constructor used to create a new instance of the class
-  const CustomButtom({
-    required this.title,
-    this.iconPath,
-    this.textStyle,
-    this.btnColor,
-    required this.onPressed,
-    this.marginTop = 0,
-    this.marginRight = 0,
-    this.marginBottom = 0,
-    this.marginLeft = 0,
-    super.key,
-  });
+  const CustomButtom(
+      {required this.title,
+      this.iconPath,
+      this.textStyle,
+      this.btnColor,
+      required this.onPressed,
+      this.marginTop = 0,
+      this.marginRight = 0,
+      this.marginBottom = 0,
+      this.marginLeft = 0,
+      super.key,
+      this.isLoading = false});
 
   /// Icon path
   final String? iconPath;
@@ -44,6 +44,9 @@ class CustomButtom extends StatelessWidget {
   ///function used to onpressed buttom
   final void Function() onPressed;
 
+  ///Method used to loading status
+  final bool isLoading;
+
   @override
   Widget build(BuildContext context) => Container(
         margin: EdgeInsets.only(
@@ -70,7 +73,7 @@ class CustomButtom extends StatelessWidget {
                     height: 20,
                   ),
                 ),
-              (title.isEmpty)
+              (isLoading)
                   ? const SizedBox(
                       height: 40, width: 40, child: CircularProgressIndicator())
                   : Text(title,

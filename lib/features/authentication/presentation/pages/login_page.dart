@@ -98,9 +98,8 @@ class _LoginPageState extends State<LoginPage> {
               marginTop: 24,
               marginLeft: 24,
               marginRight: 24,
-              title: (state.authProgressStatus.isLoading)
-                  ? ''
-                  : context.localizations.login,
+              title: context.localizations.login,
+              isLoading: state.authProgressStatus.isLoading,
               onPressed: (state.authProgressStatus.isLoading)
                   ? () {}
                   : () {

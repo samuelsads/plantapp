@@ -98,9 +98,8 @@ class _AddPlantPageState extends State<AddPlantPage> {
                             context.read<AddPlantCubit>().setDescription(value),
                       ),
                       CustomButtom(
-                          title: state.savePlantProgressStatus.isLoading
-                              ? ''
-                              : 'Guardar',
+                          title: 'Guardar',
+                          isLoading: state.savePlantProgressStatus.isLoading,
                           marginTop: 12,
                           onPressed: state.savePlantProgressStatus.isLoading
                               ? () {}
