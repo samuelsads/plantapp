@@ -36,9 +36,9 @@ void main() {
       mockFirebaseAuth = MockFirebaseAuth();
       mockFirebaseUser = MockFirebaseUser();
       registerFallbackValue(PlantRequest(
-        name: 'test', // Un valor por defecto, no tiene que ser vacío
+        name: 'test',
         description: 'test',
-        photo: MockFile(), // Importante: también un mock si es necesario
+        photo: MockFile(),
         sellerName: 'test',
         arrivalDate: DateTime.now(),
         price: 0,
