@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:plant_app/core/configs/dio/dio_config.dart';
@@ -12,6 +14,14 @@ import 'package:plant_app/features/authentication/domain/usecases/verify_authent
 import 'package:plant_app/features/authentication/presentation/blocs/authentication/authentication_bloc.dart';
 import 'package:plant_app/features/authentication/presentation/cubits/login/login_cubit.dart';
 import 'package:plant_app/features/home/presentation/cubits/navigator/navigator_cubit.dart';
+import 'package:plant_app/features/plants/data/datasource/plant_api_datasource.dart';
+import 'package:plant_app/features/plants/data/datasource/plant_api_datasource_impl.dart';
+import 'package:plant_app/features/plants/data/repositories/plant_repository_impl.dart';
+import 'package:plant_app/features/plants/domain/repositories/plant_repository.dart';
+import 'package:plant_app/features/plants/domain/usecases/save_image.dart';
+import 'package:plant_app/features/plants/domain/usecases/save_plant.dart';
+import 'package:plant_app/features/plants/presentation/blocs/plants/plants_bloc.dart';
+import 'package:plant_app/features/plants/presentation/cubits/add_plant/add_plant_cubit.dart';
 import 'package:plant_app/utils/helpers/auth_helper.dart';
 import 'package:plant_app/utils/helpers/http_client_helper.dart';
 
@@ -26,6 +36,12 @@ void setUpServiceLocator() {
   // external
   serviceLocator
       .registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance);
+
+  serviceLocator
+      .registerLazySingleton<FirebaseStorage>(() => FirebaseStorage.instance);
+
+  serviceLocator.registerLazySingleton<FirebaseFirestore>(
+      () => FirebaseFirestore.instance);
   serviceLocator.registerSingleton<Dio>(dioConfig);
   serviceLocator.registerSingleton<HttpClientHelper>(
     HttpClientHelperImpl(serviceLocator<Dio>()),
@@ -71,5 +87,47 @@ void setUpServiceLocator() {
   ///MARK: - Home
   serviceLocator.registerFactory(
     NavigatorCubit.new,
+  );
+
+  //MARK: - Add plants
+
+  //Datasources
+  serviceLocator.registerSingleton<PlantApiDataSource>(
+    PlantApiDataSourceImpl(
+      firestore: serviceLocator<FirebaseFirestore>(),
+      auth: serviceLocator<FirebaseAuth>(),
+    ),
+  );
+
+  //Repositories
+  serviceLocator.registerSingleton<PlantRepository>(
+    PlantRepositoryImpl(
+      dataSource: serviceLocator<PlantApiDataSource>(),
+    ),
+  );
+
+  //Usecases
+  serviceLocator.registerSingleton<SaveImage>(
+    SaveImage(
+      repository: serviceLocator<PlantRepository>(),
+    ),
+  );
+
+  serviceLocator.registerSingleton<SavePlant>(
+    SavePlant(
+      repository: serviceLocator<PlantRepository>(),
+    ),
+  );
+
+  //Bloc
+  serviceLocator.registerFactory(
+    AddPlantCubit.new,
+  );
+
+  serviceLocator.registerFactory(
+    () => PlantsBloc(
+      saveImage: serviceLocator<SaveImage>(),
+      savePlant: serviceLocator<SavePlant>(),
+    ),
   );
 }

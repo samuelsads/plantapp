@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:plant_app/core/presentation/widgets/layout/image_with_delete_container.dart';
 import 'package:plant_app/core/theme/app_colors.dart';
+import 'package:plant_app/utils/extensions/build_context_extension.dart';
 import 'package:plant_app/utils/helpers/image_picker_helper.dart';
 
 /// A image input field with a label.
@@ -34,11 +35,10 @@ class _SingleImageInputState extends State<SingleImageInput> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(widget.label,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: Theme.of(context).colorScheme.darkGray,
-              )),
+              style: Theme.of(context)
+                  .textTheme
+                  .headlineMedium!
+                  .copyWith(color: Theme.of(context).colorScheme.darkGray)),
           const SizedBox(height: 5),
           InkWell(
             onTap: () async {
@@ -81,9 +81,9 @@ class _SingleImageInputState extends State<SingleImageInput> {
                           .withOpacity(0.3),
                       borderRadius: BorderRadius.circular(5),
                     ),
-                    child: const Row(
+                    child: Row(
                       children: [
-                        Text('Selecciona una imagen'),
+                        Text(context.localizations.selectAnImage),
                       ],
                     ),
                   ),

@@ -27,6 +27,13 @@ class SelectMediaDialog extends StatelessWidget {
                 Navigator.of(context).pop(SelectMediaOption.files);
               },
             ),
+            ListTile(
+              leading: const Icon(Icons.camera),
+              title: Text(context.localizations.takePhoto),
+              onTap: () {
+                Navigator.of(context).pop(SelectMediaOption.camera);
+              },
+            ),
           ],
         ),
       );
