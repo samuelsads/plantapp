@@ -93,4 +93,10 @@ class PlantApiDataSourceImpl implements PlantApiDataSource {
       rethrow;
     }
   }
+
+  @override
+  Future<void> moreExpensivePlants({required int limit}) {
+    // TODO: implement moreExpensivePlants
+    throw UnimplementedError();
+  }
 }

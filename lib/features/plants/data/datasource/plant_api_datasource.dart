@@ -16,4 +16,6 @@ abstract class PlantApiDataSource {
 
   /// Save Plant
   Future<void> savePlant({required PlantRequest plantRequest});
+
+  Future<void> moreExpensivePlants({required int limit});
 }
