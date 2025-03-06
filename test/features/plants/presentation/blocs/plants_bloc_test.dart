@@ -67,8 +67,8 @@ void main() async {
       mockFirebaseAuth = MockFirebaseAuth();
       mockFirebaseUser = MockFirebaseUser();
 
-      plantsBloc =
-          PlantsBloc(saveImage: mockSaveImage, savePlant: mockSavePlant);
+      // plantsBloc =
+      //     PlantsBloc(saveImage: mockSaveImage, savePlant: mockSavePlant);
 
       //setUpServiceLocator();
       when(() => mockFirebaseAuth.currentUser).thenReturn(mockFirebaseUser);

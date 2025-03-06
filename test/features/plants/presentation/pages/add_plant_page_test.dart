@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -57,16 +59,11 @@ class MockAppLocalizations extends Mock implements AppLocalizations {
 
   @override
   String get description => 'Description';
-
-  @override
-  String get addPlant => 'Add Plant';
 }
 
 void main() async {
   TestWidgetsFlutterBinding.ensureInitialized();
-  late MockFirebaseAuth mockFirebaseAuth;
-  late MockFirebaseUser mockFirebaseUser;
-  late MockFirebaseFirestore mockFirebaseFirestore;
+
   late MockSaveImage mockSaveImage;
   late MockSavePlant mockSavePlant;
   late MockFile mockFile;

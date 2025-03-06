@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 /// Color palette for the plant app
 /// Defines the main and secondary colors for the user interface.
+///
+/// Light gray for subtle lines and backgrounds
+const Color _lightGray = Color(0xFFD9D9D9);
+
 class AppColors {
   /// Main green used for highlights
   static const MaterialColor green = MaterialColor(
@@ -47,6 +51,9 @@ class AppColors {
 
 /// Extension to easily access the colors defined in AppColors
 extension AppColorsExtension on ColorScheme {
+  /// Getter that have main color Gray
+  Color get lightGray => _lightGray;
+
   /// Main green
   Color get green => AppColors.green;
 

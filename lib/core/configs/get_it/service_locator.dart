@@ -18,6 +18,8 @@ import 'package:plant_app/features/plants/data/datasource/plant_api_datasource.d
 import 'package:plant_app/features/plants/data/datasource/plant_api_datasource_impl.dart';
 import 'package:plant_app/features/plants/data/repositories/plant_repository_impl.dart';
 import 'package:plant_app/features/plants/domain/repositories/plant_repository.dart';
+import 'package:plant_app/features/plants/domain/usecases/get_last_plants.dart';
+import 'package:plant_app/features/plants/domain/usecases/get_plants.dart';
 import 'package:plant_app/features/plants/domain/usecases/save_image.dart';
 import 'package:plant_app/features/plants/domain/usecases/save_plant.dart';
 import 'package:plant_app/features/plants/presentation/blocs/plants/plants_bloc.dart';
@@ -119,6 +121,18 @@ void setUpServiceLocator() {
     ),
   );
 
+  serviceLocator.registerSingleton<GetPlants>(
+    GetPlants(
+      repository: serviceLocator<PlantRepository>(),
+    ),
+  );
+
+  serviceLocator.registerSingleton<GetLastPlants>(
+    GetLastPlants(
+      repository: serviceLocator<PlantRepository>(),
+    ),
+  );
+
   //Bloc
   serviceLocator.registerFactory(
     AddPlantCubit.new,
@@ -128,6 +142,8 @@ void setUpServiceLocator() {
     () => PlantsBloc(
       saveImage: serviceLocator<SaveImage>(),
       savePlant: serviceLocator<SavePlant>(),
+      getPlants: serviceLocator<GetPlants>(),
+      getLatestPlants: serviceLocator<GetLastPlants>(),
     ),
   );
 }

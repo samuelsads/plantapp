@@ -83,7 +83,8 @@ class _AddPlantPageState extends State<AddPlantPage> {
                         label: context.localizations.price,
                         onChanged: (value) => context
                             .read<AddPlantCubit>()
-                            .setPrice(double.parse(value)),
+                            .setPrice(
+                                double.parse((value.isEmpty ? '0' : value))),
                       ),
                       SingleImageInput(
                         label: context.localizations.image,

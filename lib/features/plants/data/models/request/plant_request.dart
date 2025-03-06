@@ -6,6 +6,7 @@ import 'package:plant_app/features/plants/data/models/request/update_request.dar
 class PlantRequest {
   /// [PlantRequest] is a model class representing a Plant Request
   const PlantRequest({
+    this.id,
     required this.name,
     required this.sellerName,
     required this.photo,
@@ -16,6 +17,9 @@ class PlantRequest {
     required this.photoUrl,
     this.userId,
   });
+
+  /// [id] is the id of the plant
+  final String? id;
 
   /// [name] is the name of the plant
   final String name;
@@ -55,6 +59,7 @@ class PlantRequest {
     DateTime? arrivalDate,
     String? photoUrl,
     String? userId,
+    String? id,
   }) =>
       PlantRequest(
         name: name ?? this.name,
@@ -66,6 +71,7 @@ class PlantRequest {
         arrivalDate: arrivalDate ?? this.arrivalDate,
         photoUrl: photoUrl ?? this.photoUrl,
         userId: userId ?? this.userId,
+        id: id ?? this.id,
       );
 
   /// [toJson] is a method that converts the model to a json object
@@ -78,5 +84,6 @@ class PlantRequest {
         'arrival_date': arrivalDate.toIso8601String(),
         'photo_url': photoUrl,
         'user_id': userId,
+        'id': id,
       };
 }
