@@ -4,8 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:plant_app/core/configs/get_it/service_locator.dart';
 import 'package:plant_app/features/plants/presentation/blocs/plants/plants_bloc.dart';
 import 'package:plant_app/features/plants/presentation/pages/add_plant_page.dart';
-import 'package:plant_app/features/plants/presentation/widgets/last_plants_widget.dart';
-import 'package:plant_app/features/plants/presentation/widgets/list_plants_widget.dart';
+import 'package:plant_app/features/plants/presentation/widgets/carosel_slider_last_plants_widget.dart';
+import 'package:plant_app/features/plants/presentation/widgets/plants_more_expensive_widget.dart';
 
 /// [PlantsPage] is the page that displays the plants.
 class PlantsPage extends StatefulWidget {
@@ -42,8 +42,9 @@ class _MainBody extends StatelessWidget {
   Widget build(BuildContext context) => const SafeArea(
         child: Column(
           children: [
-            LastPlantsWidget(),
-            ListPlantsWidget(),
+            CarouselSliderLastPlantsWidget(),
+            PlantsMoreExpensiveWidget(),
+            //ListPlantsWidget(),
           ],
         ),
       );

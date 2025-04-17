@@ -65,7 +65,7 @@ class _SingleImageInputState extends State<SingleImageInput> {
                     color: Theme.of(context)
                         .colorScheme
                         .darkGray
-                        .withOpacity(0.3)),
+                        .withValues(alpha: 0.3)),
                 borderRadius: const BorderRadius.all(Radius.circular(10)),
               ),
               child: Row(
@@ -78,7 +78,7 @@ class _SingleImageInputState extends State<SingleImageInput> {
                       color: Theme.of(context)
                           .colorScheme
                           .darkGray
-                          .withOpacity(0.3),
+                          .withValues(alpha: 0.3),
                       borderRadius: BorderRadius.circular(5),
                     ),
                     child: Row(

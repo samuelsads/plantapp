@@ -168,11 +168,6 @@ class HttpClientHelperImpl implements HttpClientHelper {
           }
 
           return response;
-
-        // ===================================== //
-
-        default:
-          throw Exception('not valid type of request');
       }
     } on Exception {
       rethrow;

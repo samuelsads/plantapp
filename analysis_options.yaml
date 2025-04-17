@@ -70,7 +70,6 @@ linter:
   - avoid_type_to_string
   - discarded_futures
   - prefer_void_to_null
-  - unsafe_html
   - always_declare_return_types
   - avoid_catches_without_on_clauses
   - avoid_unnecessary_containers

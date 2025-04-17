@@ -133,7 +133,10 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                     borderRadius: const BorderRadius.all(Radius.circular(10)),
                     borderSide: BorderSide(
                       color: widget.errorMessage.isEmpty
-                          ? Theme.of(context).colorScheme.green.withOpacity(0.6)
+                          ? Theme.of(context)
+                              .colorScheme
+                              .green
+                              .withValues(alpha: 0.6)
                           : Theme.of(context).colorScheme.error,
                     ),
                   ),
@@ -141,7 +144,10 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                     borderRadius: const BorderRadius.all(Radius.circular(10)),
                     borderSide: BorderSide(
                       color: widget.errorMessage.isEmpty
-                          ? Theme.of(context).colorScheme.green.withOpacity(0.6)
+                          ? Theme.of(context)
+                              .colorScheme
+                              .green
+                              .withValues(alpha: 0.6)
                           : Theme.of(context).colorScheme.error,
                     ),
                   ),
@@ -149,7 +155,10 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                     borderRadius: const BorderRadius.all(Radius.circular(10)),
                     borderSide: BorderSide(
                       color: widget.errorMessage.isEmpty
-                          ? Theme.of(context).colorScheme.green.withOpacity(0.6)
+                          ? Theme.of(context)
+                              .colorScheme
+                              .green
+                              .withValues(alpha: 0.6)
                           : Theme.of(context).colorScheme.error,
                     ),
                   ),

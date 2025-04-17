@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 /// Light gray for subtle lines and backgrounds
 const Color _lightGray = Color(0xFFD9D9D9);
 
+/// Extension to easily access the colors defined in AppColors
 class AppColors {
   /// Main green used for highlights
   static const MaterialColor green = MaterialColor(

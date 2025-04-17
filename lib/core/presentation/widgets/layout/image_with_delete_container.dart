@@ -57,7 +57,10 @@ class ImageWithDeleteContainer extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.all(3),
                 decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.white.withOpacity(0.4),
+                  color: Theme.of(context)
+                      .colorScheme
+                      .white
+                      .withValues(alpha: 0.4),
                   shape: BoxShape.circle,
                 ),
                 child:

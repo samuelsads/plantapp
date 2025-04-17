@@ -1,7 +1,9 @@
 import 'package:plant_app/features/plants/data/models/response/updates_model.dart';
 import 'package:plant_app/features/plants/domain/entities/plants.dart';
 
+/// [PlantsModel] is a model class representing a Plant Model
 class PlantsModel extends Plants {
+  /// [id] is the id of the plant
   const PlantsModel({
     required super.id,
     required super.name,
@@ -13,6 +15,7 @@ class PlantsModel extends Plants {
     required super.update,
   });
 
+  /// [fromJson] is the function that converts a JSON object into a [PlantsModel] object.
   factory PlantsModel.fromJson(Map<String, dynamic> json) => PlantsModel(
         id: json['id'],
         name: json['name'],
